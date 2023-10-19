@@ -1,6 +1,6 @@
 # Final Project for Intro to Data Science
 
-## Term YYYY
+## Term 2023 Fall
 
 Team members: 
 
