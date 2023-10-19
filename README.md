@@ -10,5 +10,4 @@ Team members:
 **Summary**
 
 Our project investigates the main characteristics of 
-We will be using the data available at: 
-<all_billboard_summer_hits.csv>
+We will be using the data available at: all_billboard_summer_hits.csv
