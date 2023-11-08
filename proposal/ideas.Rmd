@@ -7,12 +7,12 @@ output: html_notebook
 
 ## Section 1. Introduction
 
-Include a brief **introduction or motivation** here
+The dataset chosen for our group will be Billboard hits from 1958-2017. We are very excited to go through this dataset as we are huge fans of music in general. It has 601 data entries for us to comb through and find interesting facts or points about the songs. 
 
 ## Section 2. Data Analysis Plan
 
-List any **initial questions** you plan to explore in this project. 
+Can you identify the top artists or songs that have appeared on the Billboard Summer Hits list over the years? Are there any trends in audio features (e.g., danceability, valence, tempo) over the years? Have these features changed over time? Is there any correlation between audio features, such as the relationship between danceability and valence? Are there any interesting patterns or anomalies in the dataset that stand out?
 
 ## Section 3. Data
 
-Include a brief **description of your dataset** (source, available attributes, format, etc.)
+A variety of musical tracks are included in the collection, with each row denoting a different song. A variety of musical characteristics, including danceability, energy, key, loudness, and pace are included, providing an understanding of the songs' structure and style. Vocal presence, acoustic character, and instrumental nature are clarified by other characteristics such as speechiness, acousticness, and instrumentalness. The dataset is a useful tool for music research and exploration since it also includes information about the artist, album, release year, and playlist that each track is on. This dataset is a thorough compilation of music-related data, making it potentially helpful for a range of studies and applications.
