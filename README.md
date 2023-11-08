@@ -5,7 +5,7 @@
 Team members: 
 
 - Student 1: [Noah Vanscoyoc](noah.vanscoyoc@gmail.com) 
-- Student 2: 
+- Student 2: [Brandon Connell](bconnell7730@floridapoly.edu)
 
 
 **Summary**
