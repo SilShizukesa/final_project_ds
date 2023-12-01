@@ -170,6 +170,29 @@ ggplot(data = all_billboard_summer_hits, aes(x = energy, y = danceability, color
 ```
 
 
+## Valence
+
+
+How happy are songs?
+
+```{r}
+ggplot(data = all_billboard_summer_hits, aes(x = valence)) +
+  geom_histogram(binwidth = .05, fill = "#3498db", color = "#2c3e50", alpha = .08) +
+  labs(title = "Distribution of Valence",
+     x = "Valence",
+     y = "Frequency") +
+  theme_minimal()
+```
+
+
+```{r}
+ggplot(data = all_billboard_summer_hits, aes(x = energy, y = valence, color = year)) +
+  geom_point() +
+  geom_smooth(color = "orange")
+```
+
+
+
 
 # Artist insight
 
@@ -236,6 +259,14 @@ ggplot(data = rihanna_songs, aes(x = key_mode, fill = mode)) +
 ```
 
 
+## Rihanna Comparisons
+
+```{r}
+ggplot(data = rihanna_songs) +
+  geom_point(aes(x = valence, y = loudness))
+```
+
+
 
 
 # Conclusion
@@ -271,7 +302,5 @@ Duration_ms: The duration of the song in milliseconds.
 Time Signature: Describes the number of beats in a bar and which note value gets the beat.
 
 Key Mode: A combination of key and mode, indicating both the tonal center and the modality of the music.
-
-
 
 
