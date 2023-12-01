@@ -1,3 +1,5 @@
+---
+title: "Exploring Music Through The Years"
 output:
   html_notebook:
     toc: true
@@ -59,8 +61,62 @@ sample_n(all_billboard_summer_hits, 5)
 
 # Data comparisons
 
+# {.tabset .tabset-fade .tabset-pills}
+
+
+## Nominal Data
+
+Mode
+
+```{r}
+ggplot(data = all_billboard_summer_hits, aes(x = mode, fill = mode)) +
+  geom_bar(,stat = "count", show.legend = FALSE) +
+  geom_text(stat = "count", aes(label = stat(count)), vjust = -.5) +
+  labs(title = "Distribution of Mode",
+       x = "Mode",
+       y = element_blank()) +
+  theme_minimal() + 
+  theme(axis.text.y  =  element_blank(),
+        axis.ticks = element_blank(),
+        panel.grid.major = element_blank(),
+        panel.grid.minor = element_blank(),
+        plot.title = element_text(hjust = .5))
+```
+
+
+
+```{r}
+ggplot(data = all_billboard_summer_hits, aes(x = key_mode, fill = mode)) +
+  geom_bar(stat = "count", show.legend = FALSE) +
+  geom_text(stat = "count", aes(label = stat(count)),hjust = 1.2) +
+  labs(title = "Distribution of Key Mode",
+       x = "Key Mode",
+       y = element_blank()) +
+  theme_minimal() + 
+  coord_flip() +
+  theme(axis.text.x  =  element_blank(),
+        axis.ticks = element_blank(),
+        panel.grid.major = element_blank(),
+        panel.grid.minor = element_blank(),
+        plot.title = element_text(hjust = .5))
+```
+
+
 
 ## Loudness
+
+Let's look at Loudness:
+```{r}
+ggplot(data = all_billboard_summer_hits, aes(x = loudness)) +
+  geom_histogram(binwidth = .05, fill = "#3498db", color = "#2c3e50", alpha = .08) +
+  labs(title = "Distribution of Loudness",
+     x = "Loudness",
+     y = "Frequency") +
+  theme_minimal()
+```
+
+
+
 
 Comparing 
 
@@ -79,7 +135,47 @@ ggplot(data = all_billboard_summer_hits, aes(x = energy, y = loudness, color = y
 
 
 
+## Danceability
+
+
+
+Let's look at Danceability:
+
+```{r}
+ggplot(data = all_billboard_summer_hits, aes(x = danceability)) +
+  geom_histogram(binwidth = .05, fill = "#3498db", color = "#2c3e50", alpha = .08) +
+  labs(title = "Distribution of Danceability",
+     x = "Danceability",
+     y = "Frequency") +
+  theme_minimal()
+```
+
+
+
+Are there any correlations with Danceability?
+
+```{r}
+ggplot(data = all_billboard_summer_hits, aes(x = energy, y = danceability, color = year)) +
+  geom_point() +
+  geom_smooth(color = "orange")
+```
+
+
+
+
+```{r}
+ggplot(data = all_billboard_summer_hits, aes(x = energy, y = danceability, color = year)) +
+  geom_point() +
+  geom_smooth(color = "orange")
+```
+
+
+
 # Artist insight
+
+# {.tabset .tabset-fade .tabset-pills}
+
+## Exploration
 
 What artist has the most summer hits? 
 
@@ -105,6 +201,8 @@ select(track_name, year)
 rihanna_songs
 ```
 
+## Rihanna Nominal Graphs
+
 Here are some graphs to show countable metrics:
 
 ```{r}
@@ -116,10 +214,26 @@ ggplot(data = rihanna_songs) +
        fill = "Mode") +
   scale_fill_manual(values = c("#3498db", "#e74c3c")) +
   theme_minimal() +
-  theme(axis.text.x = element_text(angle = 45, hjust = 1)) +
+  theme(axis.text.x = element_text()) +
   guides(fill = FALSE)
 ```
+This needs to be better. Maybe think of something different?
 
+```{r}
+ggplot(data = rihanna_songs, aes(x = key_mode, fill = mode)) +
+  geom_bar(stat = "count", show.legend = FALSE) +
+  geom_text(stat = "count", aes(label = stat(count)),hjust = 1.2) +
+  labs(title = "Distribution of Key Mode",
+       x = "Key Mode",
+       y = element_blank()) +
+  theme_minimal() + 
+  coord_flip() +
+  theme(axis.text.x  =  element_blank(),
+        axis.ticks = element_blank(),
+        panel.grid.major = element_blank(),
+        panel.grid.minor = element_blank(),
+        plot.title = element_text(hjust = .5))
+```
 
 
 
@@ -157,7 +271,6 @@ Duration_ms: The duration of the song in milliseconds.
 Time Signature: Describes the number of beats in a bar and which note value gets the beat.
 
 Key Mode: A combination of key and mode, indicating both the tonal center and the modality of the music.
-
 
 
 
