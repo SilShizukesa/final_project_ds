@@ -1,41 +1,164 @@
+output:
+  html_notebook:
+    toc: true
+    toc_float: true
+    toc_depth: 2
 ---
-title: "Project"
-output: html_notebook
----
+**Term 2023 Fall**
+
+Team members: 
+
+- Student 1: [Noah Vanscoyoc](noah.vanscoyoc@gmail.com) 
+- Student 2: [Brandon Connell](bconnell7730@floridapoly.edu)
 
 
+**Summary**
 
+Our project investigates the main characteristics of Billboard hits from the year 1958, all the way to 2017. Among the dataset is characteristics such as "Danceability" or "acousticness"
+We will be using the data available at: all_billboard_summer_hits.csv
+
+
+# Introduction
+Everyone listens to music
+
+# Prerequisites
+Loading the packages needed
 ```{r, message=FALSE, warning=FALSE}
 library(tidyverse)
+library(ggplot2)
+library(dplyr)
 ```
 
 
-# How to do this?
+
+
+# Dataset
+Importing the data set from Github, which can be found [here](https://github.com/reisanar/datasets/blob/master/all_billboard_summer_hits.csv).
 ```{r}
-#bb_path <- "https://github.com/reisanar/datasets/blob/master/all_billboard_summer_hits.csv"
+#(https://github.com/reisanar/datasets/blob/master/all_billboard_summer_hits.csv)
 #summer_billboard <- read_csv(bb_path)
 ```
 
 
+
+
+# Data Exploration
 A quick view of the data set:
 
 ```{r}
-all_billboard_summer_hits
+summary(all_billboard_summer_hits)
 ```
 
 
-Just a view of artist, track and what year
+
+Here are a few samples to show what a data entry looks like:
+
+```{r}
+sample_n(all_billboard_summer_hits, 5)
+```
+
+# Data comparisons
+
+
+## Loudness
+
+Comparing 
+
+```{r}
+ggplot(data = all_billboard_summer_hits, aes(x = danceability, y = loudness, color = year)) +
+  geom_point() +
+  geom_smooth(color = "orange")
+```
+
+
+```{r}
+ggplot(data = all_billboard_summer_hits, aes(x = energy, y = loudness, color = year)) +
+  geom_point() +
+  geom_smooth(color = "orange")
+```
+
+
+
+# Artist insight
+
+What artist has the most summer hits? 
 
 ```{r}
 all_billboard_summer_hits %>% 
-  select(artist_name, track_name,year)
+  group_by(artist_name) %>% 
+  summarise(count = n()) %>% 
+  arrange(desc(count)) %>% 
+  slice_head(n = 1)
+
 ```
 
+And what were her songs?
+```{r}
+rihanna_songs <- all_billboard_summer_hits %>% 
+  filter(artist_name == "Rihanna")
+
+rihanna_songs %>% 
+select(track_name, year)
+```
 
 ```{r}
-ggplot(data = all_billboard_summer_hits) +
-    geom_point(aes(x = energy,
-                  y = danceability,
-                 color = key)) +
-  facet_wrap(vars(year))
+rihanna_songs
 ```
+
+Here are some graphs to show countable metrics:
+
+```{r}
+ggplot(data = rihanna_songs) +
+  geom_bar(aes(x = mode, fill = mode), color = "black", alpha = 0.8, stat = "count") +
+  labs(title = "Distribution of Modes in Rihanna's Songs",
+       x = "Mode",
+       y = "Count",
+       fill = "Mode") +
+  scale_fill_manual(values = c("#3498db", "#e74c3c")) +
+  theme_minimal() +
+  theme(axis.text.x = element_text(angle = 45, hjust = 1)) +
+  guides(fill = FALSE)
+```
+
+
+
+
+
+# Conclusion
+Write our conclusion here
+
+
+# Glossary
+
+Danceability: A measure of how suitable a track is for dancing based on factors like tempo, rhythm stability, beat strength, and overall regularity.
+
+Energy: Represents the intensity and activity level of a song. High energy songs might be more lively and dynamic, while low energy songs may be more calm and subdued.
+
+Key: Indicates the key signature of the song, representing the tonal center or home base of the music.
+
+Loudness: Refers to the volume of the song. It's usually measured in decibels (dB). Higher values indicate louder songs.
+
+Mode: Describes the modality of the music, i.e., whether it's in a major or minor key. Major keys often sound more uplifting, while minor keys can give a more melancholic feel.
+
+Speechiness: Measures the presence of spoken words in a track. Songs with higher speechiness values may contain more spoken words than singing.
+
+Acousticness: Indicates the likelihood that a track is acoustic, meaning it doesn't heavily rely on electronic or synthesized elements.
+
+Instrumentalness: Measures the likelihood that a track is instrumental, without vocal content.
+
+Liveness: Indicates the presence of an audience in the recording. A higher value suggests the track was likely recorded live.
+
+Valence: Describes the musical positiveness of a track. Higher valence values suggest a more positive, happy, or cheerful mood.
+
+Tempo: Represents the speed or pace of a song, typically measured in beats per minute (BPM).
+
+Duration_ms: The duration of the song in milliseconds.
+
+Time Signature: Describes the number of beats in a bar and which note value gets the beat.
+
+Key Mode: A combination of key and mode, indicating both the tonal center and the modality of the music.
+
+
+
+
+
