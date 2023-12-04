@@ -3,16 +3,12 @@
 The code provided can be obtained from:
 <https://github.com/reisanar/datasets/blob/master/all_billboard_summer_hits.csv>
 
-This dataset describes all the billboard summer hits from 1958 to 2017.
-
-In this data set there are 22 different data fields, some of the major ones being: artist_name, track_name, danceability.... *ADD MORE AS WE DO PROJECT*
-
 
 All_Billboard_summer_hits consists of 600 rows of data along with 22 variables for each. 
 
 Below is a summary of the variables:
 
-Numerical Variables:
+## Numerical Variables:
 
 |               | Danceability      | Energy             | Loudness           | Valence            | Tempo             |
 |:-------------:|:-----------------:|:------------------:|:------------------:|:------------------:|:------------------:|
@@ -31,7 +27,7 @@ Numerical Variables:
 
 
 
-Categorical Variables:
+# Categorical Variables:
 
 1. **key Mode:** This is a combination of key and mode, indicating both the tonal center and the modality of the music.
 
@@ -67,4 +63,4 @@ Categorical Variables:
    |  F  |   63  |
    | F#  |   36  |
 
-7. **Year:** The year at which the song charted.
+7. **Year:** The year at which the song charted, ranges from 1958 to 2017.
