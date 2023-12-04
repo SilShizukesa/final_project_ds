@@ -29,7 +29,7 @@ Below is a summary of the variables:
 
 # Categorical Variables:
 
-1. **key Mode:** This is a combination of key and mode, indicating both the tonal center and the modality of the music.
+1. **Key Mode:** This is a combination of key and mode, indicating both the tonal center and the modality of the music.
 
 2. **Track URI, Playlist Name, Playlist Image, Track Name, Artist Name, Album Name, Album Image:** These variables are identifiers and names associated with tracks and playlists.
 
