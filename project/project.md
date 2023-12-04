@@ -5,6 +5,8 @@ output:
     toc: true
     toc_float: true
     toc_depth: 2
+editor_options: 
+  chunk_output_type: inline
 ---
 
 **Term 2023 Fall**
@@ -50,8 +52,7 @@ Importing the data set from Github, which can be found [here](https://github.com
 url <- "https://raw.githubusercontent.com/SilShizukesa/final_project_ds/master/data/all_billboard_summer_hits.csv"
 all_billboard_summer_hits <- read_csv(url)
 ```
-
-Let us take a look at the dataframe:
+For our report, let us take a quick peak at our dataset:
 
 ```{r}
 all_billboard_summer_hits
@@ -59,7 +60,7 @@ all_billboard_summer_hits
 
 # Data Exploration
 
-A quick summary of the data set:
+If we want to explore our dataset, we'll need to get a good feel for the entries in it as well as some key details for each observation. Let's summarise the dataset and see what the variables are:
 
 ```{r}
 summary(all_billboard_summer_hits)
@@ -70,6 +71,101 @@ Here are a few samples to show what a data entry looks like:
 ```{r}
 sample_n(all_billboard_summer_hits, 5)
 ```
+# What is the best Summer Billboard Hit?
+
+This question can seem to be a loaded question, and truthfully very opionated. But we can take some key factors into consideration to decide factually what is the best song?
+  *Taking the key factors into consideration, giving a weight to each factor then gives us the chance to multiply it by its respective data point and figure out its overall score once added
+  *Once the score has been calculated, all that must be done is put everything into the original table and select the data points we only want to see
+  *Finally, once the scores are calculated and given, we then will give each score a "Grade" based on this scale:
+  #1 song = The Overall Best Song
+  70+ = "S Tier"
+  60-69 = "A Tier"
+  50-59 = "B Tier"
+  40-49 = "C Tier"
+  39 and below = "D Tier"
+  
+
+```{r}
+songs_data <- all_billboard_summer_hits
+
+weights <- c(danceability = .3, 
+             liveness = .3, 
+             energy = .3, 
+             valence = .02, 
+             acousticness = .02, 
+             speechiness = .04, 
+             instrumentalness = .02)
+
+all_billboard_summer_hits %>%
+  mutate(score = rowSums(songs_data[, names(weights)] * weights)) %>%
+  select(track_name, artist_name, score, year,  danceability, liveness, energy, valence, acousticness, speechiness, instrumentalness) %>%
+  arrange(desc(score))
+
+
+```
+This is our function!
+```{r}
+grade <- function(score){
+  if(score>=78){
+    return("The Overall Best Song")
+  }
+  else if (score >= 70 & score <= 77){
+    return("S Tier")
+  }
+  else if(score >= 60 & score <= 69){
+    return("A Tier")
+  }
+  else if(score >= 50 & score <= 59){
+    return("B Tier")
+  }
+  else if(score >= 40 & score <= 49){
+    return("C Tier")
+  }
+  else{
+    return("D Tier")
+  }
+}
+
+```
+
+Lets use our brand new function to find the grades for each songs score:
+```{r}
+
+
+# Function to calculate grade
+grade <- function(score) {
+  if (score >= .78) {
+    return("The Overall Best Song")
+  } else if (score >= .70 & score <= .77) {
+    return("S Tier")
+  } else if (score >= .60 & score <= .70) {
+    return("A Tier")
+  } else if (score >= .50 & score <= .60) {
+    return("B Tier")
+  } else if (score >= .40 & score <= .50) {
+    return("C Tier")
+  } else if (score < .07) {
+    return("Worst Song in the Summer Billboard Hits")
+  } else {
+    return("D Tier")
+  }
+}
+
+# Apply the grade function to the dataset
+result_table <- all_billboard_summer_hits %>%
+  mutate(score = rowSums(across(names(weights)) * weights),
+         grade = sapply(score, grade)) %>%
+  select(track_name, artist_name, score, grade, year,  danceability, liveness, energy, valence, acousticness, speechiness, instrumentalness) %>%
+  arrange(desc(score))
+
+# View the result table
+print(result_table)
+
+```
+With this data exploration, we have now made a formula that will find us the best overall song in the billboard summer hits dataset that is without any opinionated input. It is all solely based on data given to use in numerical observations of songs danceability, liveness, acousticeness, energy, and other factors. 
+
+Given this output, the best song on this list is:
+Breaking up is Hard to Do by Neil Sedaka, made in 1962 with a score of .78353200 
 
 # Data comparisons
 
@@ -79,7 +175,7 @@ In this section we want to look at these hits as a whole. Are there any trends w
 
 ## Nominal Data
 
-Mode
+The first data type we looked at was if a song was in major or minor.
 
 ```{r}
 ggplot(data = all_billboard_summer_hits, aes(x = mode, fill = mode)) +
@@ -97,21 +193,24 @@ ggplot(data = all_billboard_summer_hits, aes(x = mode, fill = mode)) +
         plot.title = element_text(hjust = 0.5))
 ```
 
-
-We can see that the majority of songs are in the major mode.
+Now that we can see that the majority of songs are in the major mode. We didn't feel like it was enough and wanted to know the amount of each different key modes of all the songs over the years. 
 <br><br>
 
 
-I want to make this go from largest to smallest
+Therefore, we will find the specific counts of each key mode in this graph:
 
 ```{r}
-ggplot(data = all_billboard_summer_hits, aes(x = key_mode, fill = mode)) +
-  geom_bar(stat = "count", show.legend = FALSE) +
-  geom_text(stat = "count", aes(label = after_stat(count)), hjust = -0.01) +
+library(dplyr)
+
+all_billboard_summer_hits %>%
+  count(key_mode, mode) %>%
+  ggplot(aes(x = reorder(key_mode, n), y = n, fill = mode)) +
+  geom_bar(stat = "identity") +
+  geom_text(aes(label = n), vjust = 0.5, hjust = 1) +
   labs(title = "Distribution of Key Mode",
        x = "Key Mode",
        y = element_blank()) +
-  scale_fill_manual(values = c("#66c2a5", "#fc8d62"), name = "Mode") +  # Nice color theme
+  scale_fill_manual(values = c("#66c2a5", "#fc8d62"), name = "Mode") +
   theme_minimal() + 
   coord_flip() +
   theme(axis.text.x = element_blank(),
@@ -119,7 +218,16 @@ ggplot(data = all_billboard_summer_hits, aes(x = key_mode, fill = mode)) +
         panel.grid.major = element_blank(),
         panel.grid.minor = element_blank(),
         plot.title = element_text(hjust = 0.5))
+
 ```
+And after a quick look, we can see that most songs have used C major in the billboard summer hits. Maybe this means C major is the best key mode for making the top billboard summer hits?
+
+The table below is just to show some songs that are in the C major key mode:
+```{r}
+all_billboard_summer_hits %>%
+  filter(key_mode == "C major")
+```
+
 
 ## Loudness
 
