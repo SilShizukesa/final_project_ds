@@ -6,52 +6,57 @@ output:
     toc_float: true
     toc_depth: 2
 ---
+
 **Term 2023 Fall**
 
-Team members: 
+Team members:
 
-- Student 1: [Noah Vanscoyoc](noah.vanscoyoc@gmail.com) 
-- Student 2: [Brandon Connell](bconnell7730@floridapoly.edu)
+-   Student 1: [Noah Vanscoyoc](noah.vanscoyoc@gmail.com)
+-   Student 2: [Brandon Connell](bconnell7730@floridapoly.edu)
 
+**Abstract**
 
-**Summary**
+This project explores the evolution of Billboard hits from 1958 to 2017, analyzing key musical features such as danceability, energy, and acousticness to unveil patterns and trends, offering a comprehensive visual narrative of the dynamic shifts in popular music over the past six decades.
 
-Our project investigates the main characteristics of Billboard hits from the year 1958, all the way to 2017. Among the dataset is characteristics such as "Danceability" or "acousticness"
 We will be using the data available at: all_billboard_summer_hits.csv
 
-
 # Introduction
-Everyone listens to music
+
+The musical landscape has undergone transformations over the decades, with Billboard hits acting as a time capsule reflecting the evolving tastes and trends of society. In this exploration, we delve into the rich history of Billboard chart-toppers spanning from 1958 to 2017. By looking at key musical characteristics such as danceability, energy, and acousticness, we aim to uncover nuanced patterns, trends, and the ever-shifting dynamics of popular music. Through visualizations and analyses, we plan to provide a comprehensive overview of how these musical elements have shaped and been shaped by cultural shifts, technological advancements, and the ever-changing musical landscape over the past six decades.
 
 # Prerequisites
+
 Loading the packages needed
+
 ```{r, message=FALSE, warning=FALSE}
 library(tidyverse)
 library(ggplot2)
 library(dplyr)
+library(plotly)
 ```
 
-
-
-
 # Dataset
+
 Importing the data set from Github, which can be found [here](https://github.com/reisanar/datasets/blob/master/all_billboard_summer_hits.csv).
+
 ```{r}
 #(https://github.com/reisanar/datasets/blob/master/all_billboard_summer_hits.csv)
 #summer_billboard <- read_csv(bb_path)
 ```
 
+Let us take a look at the dataframe:
 
-
+```{r}
+all_billboard_summer_hits
+```
 
 # Data Exploration
-A quick view of the data set:
+
+A quick summary of the data set:
 
 ```{r}
 summary(all_billboard_summer_hits)
 ```
-
-
 
 Here are a few samples to show what a data entry looks like:
 
@@ -61,8 +66,9 @@ sample_n(all_billboard_summer_hits, 5)
 
 # Data comparisons
 
-# {.tabset .tabset-fade .tabset-pills}
+In this section we want to look at these hits as a whole. Are there any trends we can spot? 
 
+#  {.tabset .tabset-fade .tabset-pills}
 
 ## Nominal Data
 
@@ -70,74 +76,91 @@ Mode
 
 ```{r}
 ggplot(data = all_billboard_summer_hits, aes(x = mode, fill = mode)) +
-  geom_bar(,stat = "count", show.legend = FALSE) +
-  geom_text(stat = "count", aes(label = stat(count)), vjust = -.5) +
+  geom_bar(stat = "count", show.legend = FALSE, color = "black", alpha = 0.8) +
+  geom_text(stat = "count", aes(label = after_stat(count)), vjust = -0.5) +
   labs(title = "Distribution of Mode",
-       x = "Mode",
+       x = element_blank(),
        y = element_blank()) +
+  scale_fill_manual(values = c("#56B4E9", "#E69F00")) +
   theme_minimal() + 
-  theme(axis.text.y  =  element_blank(),
+  theme(axis.text.y = element_blank(),
         axis.ticks = element_blank(),
         panel.grid.major = element_blank(),
         panel.grid.minor = element_blank(),
-        plot.title = element_text(hjust = .5))
+        plot.title = element_text(hjust = 0.5))
 ```
 
 
+We can see that the majority of songs are in the major mode.
+<br><br>
+
+
+I want to make this go from largest to smallest
 
 ```{r}
 ggplot(data = all_billboard_summer_hits, aes(x = key_mode, fill = mode)) +
   geom_bar(stat = "count", show.legend = FALSE) +
-  geom_text(stat = "count", aes(label = stat(count)),hjust = 1.2) +
+  geom_text(stat = "count", aes(label = after_stat(count)), hjust = -0.01) +
   labs(title = "Distribution of Key Mode",
        x = "Key Mode",
        y = element_blank()) +
+  scale_fill_manual(values = c("#66c2a5", "#fc8d62"), name = "Mode") +  # Nice color theme
   theme_minimal() + 
   coord_flip() +
-  theme(axis.text.x  =  element_blank(),
+  theme(axis.text.x = element_blank(),
         axis.ticks = element_blank(),
         panel.grid.major = element_blank(),
         panel.grid.minor = element_blank(),
-        plot.title = element_text(hjust = .5))
+        plot.title = element_text(hjust = 0.5))
 ```
-
-
 
 ## Loudness
 
-Let's look at Loudness:
+*Let's look at Loudness:* 
+
 ```{r}
-ggplot(data = all_billboard_summer_hits, aes(x = loudness)) +
-  geom_histogram(binwidth = .05, fill = "#3498db", color = "#2c3e50", alpha = .08) +
+dis_loud <- ggplot(data = all_billboard_summer_hits, aes(x = loudness)) +
+  geom_histogram(binwidth = .5, fill = "#3498db", color ="#2c3e50", alpha = .5) +
   labs(title = "Distribution of Loudness",
      x = "Loudness",
      y = "Frequency") +
   theme_minimal()
 ```
 
-
-
-
-Comparing 
-
 ```{r}
-ggplot(data = all_billboard_summer_hits, aes(x = danceability, y = loudness, color = year)) +
-  geom_point() +
-  geom_smooth(color = "orange")
+ggplotly(dis_loud)
 ```
+
+Comparing
+
 
 
 ```{r}
-ggplot(data = all_billboard_summer_hits, aes(x = energy, y = loudness, color = year)) +
-  geom_point() +
-  geom_smooth(color = "orange")
+loud_v_dance <- ggplot(data = all_billboard_summer_hits, aes(x = danceability, y = loudness)) +
+  geom_point(alpha = 0.7, size = 3, color = "darkgrey") +
+  geom_smooth(method = "lm", color = "orange", linetype = "dashed") +
+  labs(title = "Scatter Plot of Danceability and Loudness",
+       x = "Danceability",
+       y = "Loudness") +
+  theme_minimal()
 ```
 
+```{r}
+ggplotly(loud_v_dance)
+```
 
+```{r}
+ggplot(data = all_billboard_summer_hits, aes(x = energy, y = loudness)) +
+  geom_point(alpha = 0.7, size = 3) +
+  geom_smooth(method = "lm",color = "#e74c3c", linetype = "dashed") +
+  labs(title = "Scatter Plot of Energy and Loudness by Year",
+       x = "Energy",
+       y = "Loudness") +
+  theme_minimal() +
+  theme(legend.position = "top")
+```
 
 ## Danceability
-
-
 
 Let's look at Danceability:
 
@@ -150,30 +173,53 @@ ggplot(data = all_billboard_summer_hits, aes(x = danceability)) +
   theme_minimal()
 ```
 
-
-
 Are there any correlations with Danceability?
 
 ```{r}
-ggplot(data = all_billboard_summer_hits, aes(x = energy, y = danceability, color = year)) +
-  geom_point() +
-  geom_smooth(color = "orange")
+ggplot(data = all_billboard_summer_hits, aes(x = danceability, y = energy)) +
+  geom_point(alpha = 0.7, size = 3, color = "#3498db") +  # Adjusted point aesthetics
+  geom_smooth(method = "lm", color = "orange", linetype = "dashed") +
+  labs(title = "Scatter Plot of Energy and Danceability",
+       x = "Danceability",
+       y = "Energy") +
+  theme_minimal()
 ```
 
 
 
+
+Dance vs Tempo
 
 ```{r}
-ggplot(data = all_billboard_summer_hits, aes(x = energy, y = danceability, color = year)) +
-  geom_point() +
-  geom_smooth(color = "orange")
+ggplot(data = all_billboard_summer_hits, aes(x = danceability, y = tempo)) +
+  geom_point(alpha = 0.7, size = 3, color = "#3498db") +  # Adjusted point aesthetics
+  geom_smooth(method = "lm", color = "orange", linetype = "dashed") +
+  labs(title = "Scatter Plot of Tempo and Danceability",
+       x = "Danceability",
+       y = "Tempo") +
+  theme_minimal()
 ```
+
+
 
 
 ## Valence
 
-
 How happy are songs?
+
+
+
+```{r}
+ggplot(data = all_billboard_summer_hits, aes(x = "", y = valence)) +
+  geom_boxplot(fill = "#3498db", color = "#2c3e50", alpha = 0.5) +
+  labs(title = "Boxplot of Valence",
+       y = "Valence") +
+  coord_flip() +
+  theme_minimal() +
+  theme(
+    axis.title.y = element_blank())
+```
+
 
 ```{r}
 ggplot(data = all_billboard_summer_hits, aes(x = valence)) +
@@ -184,23 +230,23 @@ ggplot(data = all_billboard_summer_hits, aes(x = valence)) +
   theme_minimal()
 ```
 
-
 ```{r}
-ggplot(data = all_billboard_summer_hits, aes(x = energy, y = valence, color = year)) +
-  geom_point() +
-  geom_smooth(color = "orange")
+ggplot(data = all_billboard_summer_hits, aes(x = energy, y = valence)) +
+  geom_point(alpha = 0.7, size = 3, color = "blue") +  # Adjusted point aesthetics
+  geom_smooth(method = "lm", color = "orange", linetype = "dashed") +
+  labs(title = "Scatter Plot of Energy and valence",
+       x = "Energy",
+       y = "Valence") +
+  theme_minimal()
 ```
-
-
-
 
 # Artist insight
 
-# {.tabset .tabset-fade .tabset-pills}
+#  {.tabset .tabset-fade .tabset-pills}
 
 ## Exploration
 
-What artist has the most summer hits? 
+What artist has the most summer hits?
 
 ```{r}
 all_billboard_summer_hits %>% 
@@ -212,6 +258,7 @@ all_billboard_summer_hits %>%
 ```
 
 And what were her songs?
+
 ```{r}
 rihanna_songs <- all_billboard_summer_hits %>% 
   filter(artist_name == "Rihanna")
@@ -231,47 +278,60 @@ Here are some graphs to show countable metrics:
 ```{r}
 ggplot(data = rihanna_songs) +
   geom_bar(aes(x = mode, fill = mode), color = "black", alpha = 0.8, stat = "count") +
-  labs(title = "Distribution of Modes in Rihanna's Songs",
-       x = "Mode",
-       y = "Count",
-       fill = "Mode") +
+  labs(title = "Distribution of Modes in Rihanna's Songs") +
   scale_fill_manual(values = c("#3498db", "#e74c3c")) +
   theme_minimal() +
-  theme(axis.text.x = element_text()) +
-  guides(fill = FALSE)
+  theme(
+  legend.position = "none",
+  axis.title.y = element_blank(),
+  axis.title.x = element_blank())
 ```
-This needs to be better. Maybe think of something different?
 
-```{r}
-ggplot(data = rihanna_songs, aes(x = key_mode, fill = mode)) +
-  geom_bar(stat = "count", show.legend = FALSE) +
-  geom_text(stat = "count", aes(label = stat(count)),hjust = 1.2) +
-  labs(title = "Distribution of Key Mode",
-       x = "Key Mode",
-       y = element_blank()) +
-  theme_minimal() + 
-  coord_flip() +
-  theme(axis.text.x  =  element_blank(),
-        axis.ticks = element_blank(),
-        panel.grid.major = element_blank(),
-        panel.grid.minor = element_blank(),
-        plot.title = element_text(hjust = .5))
-```
+
 
 
 ## Rihanna Comparisons
 
 ```{r}
-ggplot(data = rihanna_songs) +
-  geom_point(aes(x = valence, y = loudness))
+ggplot(data = all_billboard_summer_hits, aes(x = energy, y = loudness)) +
+  geom_point(alpha = 0.7, size = 3) +
+  geom_smooth(method = "lm", color = "#e74c3c", linetype = "dashed") +
+  
+  # Add Rihanna's songs
+  geom_point(data = rihanna_songs, aes(x = energy, y = loudness), alpha = 0.7, size = 3, color = "blue") +
+  
+  labs(title = "Energy vs Loudness",
+       x = "Energy",
+       y = "Loudness") +
+  theme_minimal() +
+  theme(legend.position = "top")
 ```
 
+We can see that Rihanna makes loud music, but the energy of her songs reaching both ends of the graph. 
+
+
+
+Rihanna dance vs liveness
+```{r}
+ggplot(data = all_billboard_summer_hits, aes(x = danceability, y = liveness)) +
+  geom_point(alpha = 0.7, size = 3, color = "skyblue") +  # Adjusted point aesthetics
+  geom_smooth(method = "lm", color = "orange", linetype = "dashed") +
+  
+  geom_point(data = rihanna_songs, aes(x = danceability, y = energy), alpha = 0.7, size = 3, color = "limegreen") +
+  
+  labs(title = "Scatter Plot of Energy and Danceability",
+       x = "Danceability",
+       y = "Liveness") +
+  theme_minimal()
+```
+
+Rihanna's songs range from middle to above average in dance, while her Liveness is well above the mean. 
 
 
 
 # Conclusion
-Write our conclusion here
 
+Write our conclusion here:
 
 # Glossary
 
@@ -302,5 +362,3 @@ Duration_ms: The duration of the song in milliseconds.
 Time Signature: Describes the number of beats in a bar and which note value gets the beat.
 
 Key Mode: A combination of key and mode, indicating both the tonal center and the modality of the music.
-
-
