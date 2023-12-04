@@ -16,7 +16,14 @@ Team members:
 
 **Abstract**
 
-This project explores the evolution of Billboard hits from 1958 to 2017, analyzing key musical features such as danceability, energy, and acousticness to unveil patterns and trends, offering a comprehensive visual narrative of the dynamic shifts in popular music over the past six decades.
+From 1959 to 2017, music has changed immensely, whether it be jazz to rock to pop to edm. Time's have changed and the billboards have too. This project will explore:
+
+  * A songs danceability score as given in the dataset
+  * A songs energy score as given in the dataset
+  * Whether or not a song is truly acoustic
+  * As well as patterns in trends from years to years
+
+With these explorations, we should be able to get a good narrative on the shifts in music over the past six decades.
 
 We will be using the data available at: all_billboard_summer_hits.csv
 
