@@ -19,9 +19,9 @@ Team members:
 From 1959 to 2017, music has changed immensely, whether it be jazz to rock to pop to edm. Time's have changed and the billboards have too. This project will explore:
 
   * A songs danceability score as given in the dataset
-  * A songs energy score as given in the dataset
+  * Can a song really have energy?
   * Whether or not a song is truly acoustic
-  * As well as patterns in trends from years to years
+  * As well as trend patterns from years to years
 
 With these explorations, we should be able to get a good narrative on the shifts in music over the past six decades.
 
