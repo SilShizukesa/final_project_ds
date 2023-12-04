@@ -47,8 +47,8 @@ library(plotly)
 Importing the data set from Github, which can be found [here](https://github.com/reisanar/datasets/blob/master/all_billboard_summer_hits.csv).
 
 ```{r}
-#(https://github.com/reisanar/datasets/blob/master/all_billboard_summer_hits.csv)
-#summer_billboard <- read_csv(bb_path)
+url <- "https://raw.githubusercontent.com/SilShizukesa/final_project_ds/master/data/all_billboard_summer_hits.csv"
+all_billboard_summer_hits <- read_csv(url)
 ```
 
 Let us take a look at the dataframe:
