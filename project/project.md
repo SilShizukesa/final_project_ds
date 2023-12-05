@@ -167,7 +167,19 @@ print(result_table)
 With this data exploration, we have now made a formula that will find us the best overall song in the billboard summer hits dataset that is without any opinionated input. It is all solely based on data given to use in numerical observations of songs danceability, valence, acousticeness, energy, and other factors. 
 
 Given this output, the best song on this list is:
-Electric Avenue by Eddie Grant made in 1983 with a score of .72871144
+Electric Avennue by Eddie Grant made in 1983 with a score of .72871144
+
+what else can we find about this song that makes it "the best"?
+
+```{r}
+all_billboard_summer_hits$duration_minutes <- all_billboard_summer_hits$duration_ms / (1000 * 60)
+
+all_billboard_summer_hits %>%
+  filter(track_name == "Electric Avennue") %>%
+  select(duration_minutes, track_name, danceability, valence, energy, everything())
+```
+we can see that this song is 3.2 minutes long, as well as having a very high danceability score. However, the energy seems to be a be low the reason for it being the best overall song is the fact that its valence is right up there with danceability in being so high. And after seeing the scores for its other variables, it can be confirmed as to why Electric Avennue is the overall best song.  
+
 
 # Data comparisons
 
