@@ -1,4 +1,4 @@
-# Final Project for Intro to Data Science
+# Final Project for Foundations of Data Analytics
 
 ## Term 2023 Fall
 
