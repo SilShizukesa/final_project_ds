@@ -288,7 +288,7 @@ Energy and loudness have a favorable correlation with one another. This finding 
 
 ## Danceability
 
-Let's look at Danceability:
+*Next let's take a look at the danceability scale:* 
 
 ```{r}
 ggplot(data = all_billboard_summer_hits, aes(x = danceability)) +
