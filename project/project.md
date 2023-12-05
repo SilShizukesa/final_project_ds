@@ -593,6 +593,7 @@ ggplot(data = filtered_data, aes(x = valence, y = energy)) +
   
   # Facet by year
   facet_wrap(~ year, scales = "free")
+```
 
 ## Summary
 
