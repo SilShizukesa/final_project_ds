@@ -23,6 +23,8 @@ From 1959 to 2017, music has changed immensely, whether it be jazz to rock to po
   * A songs grade to find the best song in the dataset
   * What types of songs are there? what modes or key modes do they use?
   * How loud are these songs and what does it have to do with other factors?
+  * Comparisons between variables to other variables to find any correlations?
+  * Which artist had the most songs in the top hits?
   * As well as trend patterns from years to years
 
 With these explorations, we should be able to get a good narrative on the shifts in music over the past six decades.
