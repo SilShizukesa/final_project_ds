@@ -1,5 +1,3 @@
-# Final Project for Intro to Data Science
+# Final Project for Foundations of Data Analytics
 
-Here is a copy of the presentation used to discuss the results of the final project. 
-
-(You can include a `.pptx` or `.pdf` version of your presentation here)
+In this section we have a copy of our presentation. There is an option for `pdf` as well as `pptx`. Both options contain the same information for consumption. 
