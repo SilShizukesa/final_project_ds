@@ -246,6 +246,8 @@ dis_loud <- ggplot(data = all_billboard_summer_hits, aes(x = loudness)) +
 ggplotly(dis_loud)
 ```
 
+Here we can see that the majority of songs lay between -10 Db and -5 Db, as well as the data having a left skew.
+
 Comparing
 
 
