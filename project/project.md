@@ -108,23 +108,20 @@ all_billboard_summer_hits %>%
 ```
 This is our function!
 ```{r}
-grade <- function(score){
-  if(score>=78){
+grade <- function(score) {
+  if (score >= .7287) {
     return("The Overall Best Song")
-  }
-  else if (score >= 70 & score <= 77){
+  } else if (score >= .70 & score <= .72701942) {
     return("S Tier")
-  }
-  else if(score >= 60 & score <= 69){
+  } else if (score >= .60 & score <= .70) {
     return("A Tier")
-  }
-  else if(score >= 50 & score <= 59){
+  } else if (score >= .50 & score <= .60) {
     return("B Tier")
-  }
-  else if(score >= 40 & score <= 49){
+  } else if (score >= .40 & score <= .50) {
     return("C Tier")
-  }
-  else{
+  } else if (score < .07) {
+    return("Worst Song in the Summer Billboard Hits")
+  } else {
     return("D Tier")
   }
 }
