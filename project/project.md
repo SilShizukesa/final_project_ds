@@ -276,8 +276,8 @@ This graph shows that there is no relationship between liveliness and loudness. 
 
 ```{r}
 ggplot(data = all_billboard_summer_hits, aes(x = energy, y = loudness)) +
-  geom_point(alpha = 0.7, size = 3) +
-  geom_smooth(method = "lm",color = "#e74c3c", linetype = "dashed") +
+  geom_point(alpha = 0.7, size = 3, color = "#3498db") +
+  geom_smooth(method = "lm",color = "#2c3e50", linetype = "dashed") +
   labs(title = "Scatter Plot of Energy and Loudness by Year",
        x = "Energy",
        y = "Loudness") +
