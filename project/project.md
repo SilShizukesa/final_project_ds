@@ -162,10 +162,10 @@ result_table <- all_billboard_summer_hits %>%
 print(result_table)
 
 ```
-With this data exploration, we have now made a formula that will find us the best overall song in the billboard summer hits dataset that is without any opinionated input. It is all solely based on data given to use in numerical observations of songs danceability, liveness, acousticeness, energy, and other factors. 
+With this data exploration, we have now made a formula that will find us the best overall song in the billboard summer hits dataset that is without any opinionated input. It is all solely based on data given to use in numerical observations of songs danceability, valence, acousticeness, energy, and other factors. 
 
 Given this output, the best song on this list is:
-
+Electric Avenue by Eddie Grant made in 1983 with a score of .72871144
 
 # Data comparisons
 
