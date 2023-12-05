@@ -89,9 +89,9 @@ This question can seem to be a loaded question, and truthfully very opionated. B
 songs_data <- all_billboard_summer_hits
 
 weights <- c(danceability = .3, 
-             liveness = .3, 
+             liveness = .02, 
              energy = .3, 
-             valence = .02, 
+             valence = .3, 
              acousticness = .02, 
              speechiness = .04, 
              instrumentalness = .02)
@@ -134,9 +134,9 @@ Lets use our brand new function to find the grades for each songs score:
 
 # Function to calculate grade
 grade <- function(score) {
-  if (score >= .78) {
+  if (score >= .7287) {
     return("The Overall Best Song")
-  } else if (score >= .70 & score <= .77) {
+  } else if (score >= .70 & score <= .72701942) {
     return("S Tier")
   } else if (score >= .60 & score <= .70) {
     return("A Tier")
@@ -165,7 +165,7 @@ print(result_table)
 With this data exploration, we have now made a formula that will find us the best overall song in the billboard summer hits dataset that is without any opinionated input. It is all solely based on data given to use in numerical observations of songs danceability, liveness, acousticeness, energy, and other factors. 
 
 Given this output, the best song on this list is:
-Breaking up is Hard to Do by Neil Sedaka, made in 1962 with a score of .78353200 
+
 
 # Data comparisons
 
@@ -232,7 +232,7 @@ all_billboard_summer_hits %>%
 
 ## Loudness
 
-*Let's look at Loudness:* 
+*Let's take a look at the Loudness scale:* 
 
 ```{r}
 dis_loud <- ggplot(data = all_billboard_summer_hits, aes(x = loudness)) +
@@ -246,8 +246,6 @@ dis_loud <- ggplot(data = all_billboard_summer_hits, aes(x = loudness)) +
 ```{r}
 ggplotly(dis_loud)
 ```
-
-Here we can see that the majority of songs lay between -10 Db and -5 Db, as well as the data having a left skew.
 
 Comparing
 
