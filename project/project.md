@@ -333,8 +333,7 @@ A song's danceability can be viewed as a function of its tempo; this graph indic
 
 ## Valence
 
-How happy are songs?
-
+To what extent are songs happy? Let us examine the following pair of graphs:
 
 
 ```{r}
@@ -357,6 +356,8 @@ ggplot(data = all_billboard_summer_hits, aes(x = valence)) +
      y = "Frequency") +
   theme_minimal()
 ```
+
+According to these graphs, happiness has a significant leftward skew, which indicates that the majority of songs that become hits will sound happy.
 
 ```{r}
 ggplot(data = all_billboard_summer_hits, aes(x = energy, y = valence)) +
