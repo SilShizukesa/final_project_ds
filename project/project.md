@@ -393,6 +393,7 @@ all_billboard_summer_hits %>%
 ```
 
 # Artist insight
+We want to examine the artist with the greatest hits in this section and compare them to their contemporaries. Does said artist adhere to the established trends? Or are they going to overlook them?
 
 #  {.tabset .tabset-fade .tabset-pills}
 
@@ -408,8 +409,7 @@ all_billboard_summer_hits %>%
   slice_head(n = 1)
 
 ```
-
-And what were her songs?
+With seven entries on the list, Rihanna defeated every other artist to take the top spot. Which songs were these?
 
 ```{r}
 rihanna_songs <- all_billboard_summer_hits %>% 
@@ -419,13 +419,17 @@ rihanna_songs %>%
 select(track_name, year)
 ```
 
+
+The list of songs is visible above. We have listed the songs below along with every characteristic that has been linked to them.
+
+
 ```{r}
 rihanna_songs
 ```
 
 ## Rihanna Nominal Graphs
 
-Here are some graphs to show countable metrics:
+As in the prior sections, let's start by examining Rihanna's nominal statistics:
 
 ```{r}
 ggplot(data = rihanna_songs) +
@@ -438,19 +442,20 @@ ggplot(data = rihanna_songs) +
   axis.title.y = element_blank(),
   axis.title.x = element_blank())
 ```
-
+With a higher average of songs in a minor mode, Rihanna beats the mean with a ratio of 4:3.
 
 
 
 ## Rihanna Comparisons
 
+Let us take a quick look at Rihanna's placements in some of our previous graphs. How will she compare?
 ```{r}
 ggplot(data = all_billboard_summer_hits, aes(x = energy, y = loudness)) +
-  geom_point(alpha = 0.7, size = 3) +
+  geom_point(alpha = 0.7, size = 3, color = "#3498db") +
   geom_smooth(method = "lm", color = "#e74c3c", linetype = "dashed") +
   
   # Add Rihanna's songs
-  geom_point(data = rihanna_songs, aes(x = energy, y = loudness), alpha = 0.7, size = 3, color = "blue") +
+  geom_point(data = rihanna_songs, aes(x = energy, y = loudness), alpha = 1, size = 3, color = "#2ecc71") +
   
   labs(title = "Energy vs Loudness",
        x = "Energy",
@@ -459,27 +464,29 @@ ggplot(data = all_billboard_summer_hits, aes(x = energy, y = loudness)) +
   theme(legend.position = "top")
 ```
 
-We can see that Rihanna makes loud music, but the energy of her songs reaching both ends of the graph. 
+Although it's evident that Rihanna prefers to release louder music, her songs have a wide range of energy. 
 
 
 
-Rihanna dance vs liveness
+Finally, let us take a look at her songs Danceability and liveness:
 ```{r}
 ggplot(data = all_billboard_summer_hits, aes(x = danceability, y = liveness)) +
-  geom_point(alpha = 0.7, size = 3, color = "skyblue") +  # Adjusted point aesthetics
-  geom_smooth(method = "lm", color = "orange", linetype = "dashed") +
+  geom_point(alpha = 0.7, size = 3, color = "#3498db") +
+  geom_smooth(method = "lm", color = "#e74c3c", linetype = "dashed") +
   
-  geom_point(data = rihanna_songs, aes(x = danceability, y = energy), alpha = 0.7, size = 3, color = "limegreen") +
+  geom_point(data = rihanna_songs, aes(x = danceability, y = energy), alpha = 1, size = 3, color = "#2ecc71") +
   
-  labs(title = "Scatter Plot of Energy and Danceability",
+  labs(title = "Scatter Plot of Danceability and liveness",
        x = "Danceability",
        y = "Liveness") +
   theme_minimal()
 ```
 
-Rihanna's songs range from middle to above average in dance, while her Liveness is well above the mean. 
+Dance-wise, Rihanna's songs range from mediocre to above average, but her liveness is significantly above average. 
 
+## Summary
 
+Nominal statistics for Rihanna show that she prefers songs in a minor mode, outpacing the average by a ratio of 4:3. Even though her songs tend to be louder, they still have a wide range of energy. Rihanna's songs are notably above average in liveness, but they range from mediocre to above average in terms of danceability. Not always adhering to trends, Rihanna has gone on to become one of the greats.
 
 # Conclusion
 
