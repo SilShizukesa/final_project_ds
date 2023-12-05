@@ -292,7 +292,7 @@ Energy and loudness have a favorable correlation with one another. This finding 
 
 ```{r}
 ggplot(data = all_billboard_summer_hits, aes(x = danceability)) +
-  geom_histogram(binwidth = .05, fill = "#8e44ad", color = "#008080", alpha = .08) +
+  geom_histogram(binwidth = .05, fill = "#8e44ad", color = "#008080", alpha = .5) +
   labs(title = "Distribution of Danceability",
      x = "Danceability",
      y = "Frequency") +
@@ -300,13 +300,14 @@ ggplot(data = all_billboard_summer_hits, aes(x = danceability)) +
 ```
 The song distribution is skewed slightly to the left and follows a standard bell shape. This demonstrates that most of these singles are at least somewhat danceable. 
 
+
 *Next let us take a look at danceability compared with other variables:*
 
 First we will take a look at Energy compared to Danceability:
 
 ```{r}
 ggplot(data = all_billboard_summer_hits, aes(x = danceability, y = energy)) +
-  geom_point(alpha = 0.8, size = 3, color = "#8e44ad") +  # Adjusted point aesthetics
+  geom_point(alpha = 0.5, size = 3, color = "#8e44ad") +  # Adjusted point aesthetics
   geom_smooth(method = "lm", color = "#008080", linetype = "dashed") +
   labs(title = "Scatter Plot of Energy and Danceability",
        x = "Danceability",
@@ -321,7 +322,7 @@ Will we see the same thing with tempo?
 
 ```{r}
 ggplot(data = all_billboard_summer_hits, aes(x = danceability, y = tempo)) +
-  geom_point(alpha = 0.7, size = 3, color = "#8e44ad") +  # Adjusted point aesthetics
+  geom_point(alpha = 0.5, size = 3, color = "#8e44ad") +
   geom_smooth(method = "lm", color = "#008080", linetype = "dashed") +
   labs(title = "Scatter Plot of Tempo and Danceability",
        x = "Danceability",
