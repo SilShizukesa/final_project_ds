@@ -477,8 +477,6 @@ ggplot(data = all_billboard_summer_hits, aes(x = danceability, y = tempo)) +
   theme_minimal()
 ```
 
-
-Let us take a quick look at Rihanna's placements in some of our previous graphs. How will she compare?
 ```{r}
 ggplot(data = all_billboard_summer_hits, aes(x = liveness, y = loudness)) +
   geom_point(alpha = 0.7, size = 3, color = "#3498db") +
