@@ -337,7 +337,7 @@ How happy are songs?
 
 ```{r}
 ggplot(data = all_billboard_summer_hits, aes(x = "", y = valence)) +
-  geom_boxplot(fill = "#3498db", color = "#2c3e50", alpha = 0.5) +
+  geom_boxplot(fill = "#2ecc71", color = "#e67e22", alpha = 0.2) +
   labs(title = "Boxplot of Valence",
        y = "Valence") +
   coord_flip() +
@@ -349,7 +349,7 @@ ggplot(data = all_billboard_summer_hits, aes(x = "", y = valence)) +
 
 ```{r}
 ggplot(data = all_billboard_summer_hits, aes(x = valence)) +
-  geom_histogram(binwidth = .05, fill = "#3498db", color = "#2c3e50", alpha = .08) +
+  geom_histogram(binwidth = .05, fill = "#2ecc71", color = "#e67e22", alpha = .2) +
   labs(title = "Distribution of Valence",
      x = "Valence",
      y = "Frequency") +
@@ -358,8 +358,8 @@ ggplot(data = all_billboard_summer_hits, aes(x = valence)) +
 
 ```{r}
 ggplot(data = all_billboard_summer_hits, aes(x = energy, y = valence)) +
-  geom_point(alpha = 0.7, size = 3, color = "blue") +  # Adjusted point aesthetics
-  geom_smooth(method = "lm", color = "orange", linetype = "dashed") +
+  geom_point(alpha = 0.2, size = 3, color = "#2ecc71") +
+  geom_smooth(method = "lm", color = "#e67e22", linetype = "dashed") +
   labs(title = "Scatter Plot of Energy and valence",
        x = "Energy",
        y = "Valence") +
