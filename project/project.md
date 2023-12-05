@@ -357,17 +357,22 @@ ggplot(data = all_billboard_summer_hits, aes(x = valence)) +
   theme_minimal()
 ```
 
+
 According to these graphs, happiness has a significant leftward skew, which indicates that the majority of songs that become hits will sound happy.
+<br>
+Let's now examine an energy and valence scatter plot:
 
 ```{r}
 ggplot(data = all_billboard_summer_hits, aes(x = energy, y = valence)) +
   geom_point(alpha = 0.2, size = 3, color = "#2ecc71") +
   geom_smooth(method = "lm", color = "#e67e22", linetype = "dashed") +
-  labs(title = "Scatter Plot of Energy and valence",
+  labs(title = "Energy and Valence",
        x = "Energy",
        y = "Valence") +
   theme_minimal()
 ```
+
+In any event, I don't think this is all that surprising. It appeared evident that happiness and energy were positively correlated.
 
 # Artist insight
 
