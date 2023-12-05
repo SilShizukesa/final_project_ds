@@ -516,6 +516,84 @@ Rihanna's music has above-average danceability and a dynamic touch thanks to its
 
 As we have shown Rihanna makes unique music compared to music as a whole. But, lets see if she gets closer to the mean when we look at her songs per year:
 
+```{r}
+specific_years <- c(2005, 2006, 2007, 2008, 2012, 2016) # Years that Rihanna charted
+
+filtered_data <- all_billboard_summer_hits %>%
+  filter(year %in% specific_years)
+
+ggplot(data = filtered_data, aes(x = danceability, y = tempo)) +
+  geom_point(aes(color = "Other"), alpha = 0.7, size = 3) +
+  geom_smooth(method = "lm", color = "#e74c3c", linetype = "dashed") +
+  
+  geom_point(data = rihanna_songs, aes(color = "Rihanna"), alpha = 1, size = 3) +
+  
+  labs(title = "Danceability and Tempo",
+       x = "Danceability",
+       y = "Tempo") +
+  
+  scale_color_manual(values = c("Other" = "#3498db", "Rihanna" = "#2ecc71"), name = "Legend") +
+  
+  theme_minimal() +
+  theme(legend.position = "top") +
+  
+  # Facet by year
+  facet_wrap(~ year, scales = "free")
+
+```
+
+```{r}
+specific_years <- c(2005, 2006, 2007, 2008, 2012, 2016) # Years that Rihanna charted
+
+filtered_data <- all_billboard_summer_hits %>%
+  filter(year %in% specific_years)
+
+ggplot(data = filtered_data, aes(x = liveness, y = loudness)) +
+  geom_point(aes(color = "Other"), alpha = 0.7, size = 3) +
+  geom_smooth(method = "lm", color = "#e74c3c", linetype = "dashed") +
+  
+  geom_point(data = rihanna_songs, aes(color = "Rihanna"), alpha = 1, size = 3) +
+  
+  labs(title = "Loudness vs Liveness",
+       x = "Liveness",
+       y = "Loudness") +
+  
+  scale_color_manual(values = c("Other" = "#3498db", "Rihanna" = "#2ecc71"), name = "Legend") +
+  
+  theme_minimal() +
+  theme(legend.position = "top") +
+  
+  # Facet by year
+  facet_wrap(~ year, scales = "free")
+```
+
+
+
+
+```{r}
+specific_years <- c(2005, 2006, 2007, 2008, 2012, 2016) # Years that Rihanna charted
+
+filtered_data <- all_billboard_summer_hits %>%
+  filter(year %in% specific_years)
+
+ggplot(data = filtered_data, aes(x = valence, y = energy)) +
+  geom_point(aes(color = "Other"), alpha = 0.7, size = 3) +
+  geom_smooth(method = "lm", color = "#e74c3c", linetype = "dashed") +
+  
+  geom_point(data = rihanna_songs, aes(color = "Rihanna"), alpha = 1, size = 3) +
+  
+  labs(title = "Valence vs Energy",
+       x = "Valence",
+       y = "Energy") +
+  
+  scale_color_manual(values = c("Other" = "#3498db", "Rihanna" = "#2ecc71"), name = "Legend") +
+  
+  theme_minimal() +
+  theme(legend.position = "top") +
+  
+  # Facet by year
+  facet_wrap(~ year, scales = "free")
+
 ## Summary
 
 Nominal statistics for Rihanna show that she prefers songs in a minor mode, outpacing the average by a ratio of 4:3. Even though her songs tend to be louder, they still have a wide range of energy. Rihanna's songs are notably above average in liveness, but they range from mediocre to above average in terms of danceability. Not always adhering to trends, Rihanna has gone on to become one of the greats.
