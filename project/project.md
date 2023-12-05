@@ -462,7 +462,7 @@ Rihanna's songs range from middle to above average in dance, while her Liveness 
 
 # Conclusion
 
-Write our conclusion here:
+In conclusion, our investigation has explored the dynamic environment of Billboard successes between 1959 and 2017, revealing notable changes in musical styles and traits. We created a formula to objectively identify the greatest song overall in the Billboard summer hits dataset by using a thorough analysis. This formula took into account important parameters like danceability, liveness, energy, and more. We developed a grading system that assigns songs to tiers based on our meticulous study and balancing of these elements, offering an objective evaluation of their general quality. Analyzing nominal data exposed interesting trends, like the dominance of C major key mode and the frequency of songs in the major mode. We also looked into valence, loudness, and danceability, finding patterns and insights into the connections between these musical components. Additional artist-specific research, with a special focus on Rihanna, highlighted her unique musical qualities and the diversity and originality seen in the larger dataset. All things considered, our study provides a thorough examination of the musical landscape over the course of six decades, providing insightful information about the elements that lead to the popularity of Billboard summer successes.
 
 # Glossary
 
