@@ -272,7 +272,7 @@ loud_v_live <- ggplot(data = all_billboard_summer_hits, aes(x = liveness, y = lo
 ```{r}
 ggplotly(loud_v_live)
 ```
-Looking at this graph we can see that there is no correlation between loudness and liveness. It is worth noting that the majority of songs have only a small amount of liveness to their songs. This most likely is the result of songs being recorded in studios rather than a public event.
+This graph shows that there is no relationship between liveliness and loudness. Though, it is important to note that most songs only have a slight live element to them. This is probably the outcome of songs being recorded in recording studios as opposed to live performances.
 
 ```{r}
 ggplot(data = all_billboard_summer_hits, aes(x = energy, y = loudness)) +
@@ -284,6 +284,7 @@ ggplot(data = all_billboard_summer_hits, aes(x = energy, y = loudness)) +
   theme_minimal() +
   theme(legend.position = "top")
 ```
+Energy and loudness have a favorable correlation with one another. This finding supports our earlier theories that suggested that energy levels would increase with music volume.
 
 ## Danceability
 
