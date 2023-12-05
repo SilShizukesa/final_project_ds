@@ -255,8 +255,6 @@ Here we can see that the majority of songs lay between -10 Db and -5 Db, as well
 
 *Now let us take a look at loudness compared with other variables:*
 
-<br>
-
 First up is loudness compared to liveness
 
 ```{r}
