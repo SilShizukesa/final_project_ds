@@ -502,6 +502,25 @@ Dance-wise, Rihanna's songs range from mediocre to above average, but her livene
 
 Nominal statistics for Rihanna show that she prefers songs in a minor mode, outpacing the average by a ratio of 4:3. Even though her songs tend to be louder, they still have a wide range of energy. Rihanna's songs are notably above average in liveness, but they range from mediocre to above average in terms of danceability. Not always adhering to trends, Rihanna has gone on to become one of the greats.
 
+## For Future Consideration
+
+Does length of song correlate to danceability scores? 
+```{r}
+df <- all_billboard_summer_hits %>%
+  select(danceability, duration_ms, track_name, artist_name) %>%
+  arrange(desc(duration_ms))
+
+df$duration_minutes <- df$duration_ms / (1000 * 60)
+
+df %>%
+  select(danceability, duration_minutes, track_name, artist_name)
+
+
+
+```
+
+In the end, we very briefly looked into what some correlations could be between the length of songs and their danceability score. As we can see above in the table, the longest song (in minutes) is "I want your sex Pts 1 and 2 remastered" by george michaels with a danceability score of .812. But right below it is an 8.95 minute long song with a score of .217. Which to us, makes a lot of sense, if a song is very long then you wouldn't want to dance for too long but then it seems like there could be outliers to this. We wanted to leave this for the end for future consideration to take it further when we are more proficient than we are with R to find out more about this detail. 
+
 # Conclusion
 
 In conclusion, our investigation has explored the dynamic environment of Billboard successes between 1959 and 2017, revealing notable changes in musical styles and traits. We created a formula to objectively identify the greatest song overall in the Billboard summer hits dataset by using a thorough analysis. This formula took into account important parameters like danceability, liveness, energy, and more. We developed a grading system that assigns songs to tiers based on our meticulous study and balancing of these elements, offering an objective evaluation of their general quality. Analyzing nominal data exposed interesting trends, like the dominance of C major key mode and the frequency of songs in the major mode. We also looked into valence, loudness, and danceability, finding patterns and insights into the connections between these musical components. Additional artist-specific research, with a special focus on Rihanna, highlighted her unique musical qualities and the diversity and originality seen in the larger dataset. All things considered, our study provides a thorough examination of the musical landscape over the course of six decades, providing insightful information about the elements that lead to the popularity of Billboard summer successes.
