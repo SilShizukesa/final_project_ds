@@ -250,23 +250,29 @@ dis_loud <- ggplot(data = all_billboard_summer_hits, aes(x = loudness)) +
 ggplotly(dis_loud)
 ```
 
-Comparing
+Here we can see that the majority of songs lay between -10 Db and -5 Db, as well as the data having a left skew.
 
 
+*Now let us take a look at loudness compared with other variables:*
+
+<br>
+
+First up is loudness compared to liveness
 
 ```{r}
-loud_v_dance <- ggplot(data = all_billboard_summer_hits, aes(x = danceability, y = loudness)) +
-  geom_point(alpha = 0.7, size = 3, color = "darkgrey") +
-  geom_smooth(method = "lm", color = "orange", linetype = "dashed") +
-  labs(title = "Scatter Plot of Danceability and Loudness",
-       x = "Danceability",
+loud_v_live <- ggplot(data = all_billboard_summer_hits, aes(x = liveness, y = loudness)) +
+  geom_point(alpha = 0.7, size = 3, color = "#3498db") +
+  geom_smooth(method = "lm", color = "#2c3e50", linetype = "dashed") +
+  labs(title = "Scatter Plot of Liveness and Loudness",
+       x = "Liveness",
        y = "Loudness") +
   theme_minimal()
 ```
 
 ```{r}
-ggplotly(loud_v_dance)
+ggplotly(loud_v_live)
 ```
+Looking at this graph we can see that there is no correlation between loudness and liveness. It is worth noting that the majority of songs have only a small amount of liveness to their songs. This most likely is the result of songs being recorded in studios rather than a public event.
 
 ```{r}
 ggplot(data = all_billboard_summer_hits, aes(x = energy, y = loudness)) +
