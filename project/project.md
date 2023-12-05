@@ -593,9 +593,11 @@ ggplot(data = filtered_data, aes(x = valence, y = energy)) +
   facet_wrap(~ year, scales = "free")
 ```
 
+These graphs demonstrate that Rihanna is, in fact, exceptional. Her songs are typically found on the edge of the uncertainty cone, but there is room for uncertainty with only 10 samples. Her music did seem to deviate the most from the mean in 2007, and was the closest in 2008 & 2012.
+
 ## Summary
 
-Nominal statistics for Rihanna show that she prefers songs in a minor mode, outpacing the average by a ratio of 4:3. Even though her songs tend to be louder, they still have a wide range of energy. Rihanna's songs are notably above average in liveness, but they range from mediocre to above average in terms of danceability. Not always adhering to trends, Rihanna has gone on to become one of the greats.
+Rihanna's incredible musical ability, which combines dynamic tempo changes and above-average danceability, fits in with other artists in a studio-centric liveliness. Her songs stand out for emphasizing loudness, which produces an arresting and alluring effect. Although there is some uncertainty due to the small 10-sample size, the graphs show that her music regularly falls on the edge of the uncertainty cone. While her music came very close to the mean in 2008 and 2012, there were some notable departures from the mean in 2007. This combination highlights Rihanna's interesting and varied career in music, both stylistically and numerically.
 
 ## For Future Consideration
 
