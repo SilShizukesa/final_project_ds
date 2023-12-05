@@ -298,6 +298,7 @@ ggplot(data = all_billboard_summer_hits, aes(x = danceability)) +
      y = "Frequency") +
   theme_minimal()
 ```
+The song distribution is skewed slightly to the left and follows a standard bell shape. This demonstrates that most of these singles are at least somewhat danceable. 
 
 *Next let us take a look at danceability compared with other variables:*
 
