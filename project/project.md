@@ -74,8 +74,11 @@ sample_n(all_billboard_summer_hits, 5)
 # What is the best Summer Billboard Hit?
 
 This question can seem to be a loaded question, and truthfully very opionated. But we can take some key factors into consideration to decide factually what is the best song?
+
   *Taking the key factors into consideration, giving a weight to each factor then gives us the chance to multiply it by its respective data point and figure out its overall score once added
+  
   *Once the score has been calculated, all that must be done is put everything into the original table and select the data points we only want to see
+  
   *Finally, once the scores are calculated and given, we then will give each score a "Grade" based on this scale:
   #1 song = The Overall Best Song
   70+ = "S Tier"
