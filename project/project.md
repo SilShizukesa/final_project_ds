@@ -298,13 +298,6 @@ ggplot(data = all_billboard_summer_hits, aes(x = danceability)) +
 ```
 The song distribution is skewed slightly to the left and follows a standard bell shape. This demonstrates that most of these singles are at least somewhat danceable. 
 
-```{r}
-all_billboard_summer_hits %>%
-  select(danceability, loudness, track_name) %>%
-  arrange(desc(danceability))
-```
-Looking at the table in descending order for danceability, we can see that its a 50/50 split on whether or not the song is above -5 db among the highest ranked danceable songs.
-
 *Next let us take a look at danceability compared with other variables:*
 
 First we will take a look at Energy compared to Danceability:
