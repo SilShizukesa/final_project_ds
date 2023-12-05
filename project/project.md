@@ -250,7 +250,7 @@ dis_loud <- ggplot(data = all_billboard_summer_hits, aes(x = loudness)) +
 ggplotly(dis_loud)
 ```
 
-Here we can see that the majority of songs lay between -10 Db and -5 Db, as well as the data having a left skew.
+Here we can see that the majority of songs lay between -10 Db and -5 Db, as well as the data having a left skew. We wanted to make a very simple and easy graph to look at for the loudness scale, making it interactive with plotly allows for users to hover over the bars to see the individual counts for each loudness scale integer. With the highest being 42 songs at a decibel level of -6.
 
 
 *Now let us take a look at loudness compared with other variables:*
@@ -287,6 +287,7 @@ Energy and loudness have a favorable correlation with one another. This finding 
 ## Danceability
 
 *Next let's take a look at the danceability scale:* 
+As for our next graph, we wanted to compare the danceability to loudness in the songs. What we wanted to extract from this was whether or not songs that are "loud" per se, are danceable or if they make for less intriguing songs to dance to. Of course this is also opinionated but we wanted to see statistically what the answer would be.
 
 ```{r}
 ggplot(data = all_billboard_summer_hits, aes(x = danceability)) +
@@ -298,6 +299,12 @@ ggplot(data = all_billboard_summer_hits, aes(x = danceability)) +
 ```
 The song distribution is skewed slightly to the left and follows a standard bell shape. This demonstrates that most of these singles are at least somewhat danceable. 
 
+```{r}
+all_billboard_summer_hits %>%
+  select(danceability, loudness, track_name) %>%
+  arrange(desc(danceability))
+```
+Looking at the table in descending order for danceability, we can see that its a 50/50 split on whether or not the song is above -5 db among the highest ranked danceable songs.
 
 *Next let us take a look at danceability compared with other variables:*
 
