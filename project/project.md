@@ -225,7 +225,8 @@ And after a quick look, we can see that most songs have used C major in the bill
 The table below is just to show some songs that are in the C major key mode:
 ```{r}
 all_billboard_summer_hits %>%
-  filter(key_mode == "C major")
+  filter(key_mode == "C major") %>%
+  select(key_mode, track_name, everything())
 ```
 
 
