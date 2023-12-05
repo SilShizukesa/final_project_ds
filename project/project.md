@@ -292,7 +292,7 @@ Energy and loudness have a favorable correlation with one another. This finding 
 
 ```{r}
 ggplot(data = all_billboard_summer_hits, aes(x = danceability)) +
-  geom_histogram(binwidth = .05, fill = "#3498db", color = "#2c3e50", alpha = .08) +
+  geom_histogram(binwidth = .05, fill = "#8e44ad", color = "#008080", alpha = .08) +
   labs(title = "Distribution of Danceability",
      x = "Danceability",
      y = "Frequency") +
@@ -303,8 +303,8 @@ Are there any correlations with Danceability?
 
 ```{r}
 ggplot(data = all_billboard_summer_hits, aes(x = danceability, y = energy)) +
-  geom_point(alpha = 0.7, size = 3, color = "#3498db") +  # Adjusted point aesthetics
-  geom_smooth(method = "lm", color = "orange", linetype = "dashed") +
+  geom_point(alpha = 0.8, size = 3, color = "#8e44ad") +  # Adjusted point aesthetics
+  geom_smooth(method = "lm", color = "#008080", linetype = "dashed") +
   labs(title = "Scatter Plot of Energy and Danceability",
        x = "Danceability",
        y = "Energy") +
@@ -318,8 +318,8 @@ Dance vs Tempo
 
 ```{r}
 ggplot(data = all_billboard_summer_hits, aes(x = danceability, y = tempo)) +
-  geom_point(alpha = 0.7, size = 3, color = "#3498db") +  # Adjusted point aesthetics
-  geom_smooth(method = "lm", color = "orange", linetype = "dashed") +
+  geom_point(alpha = 0.7, size = 3, color = "#8e44ad") +  # Adjusted point aesthetics
+  geom_smooth(method = "lm", color = "#008080", linetype = "dashed") +
   labs(title = "Scatter Plot of Tempo and Danceability",
        x = "Danceability",
        y = "Tempo") +
