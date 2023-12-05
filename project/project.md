@@ -320,6 +320,10 @@ ggplot(data = all_billboard_summer_hits, aes(x = danceability, y = energy)) +
 ```
 
 There is a small correlation between energy and danceability. Though we can see the best range for a song's danceability is from .5 to .75.
+```{r}
+all_billboard_summer_hits %>%
+  select(energy, danceability, track_name)
+```
 
 
 Will we see the same thing with tempo?
@@ -334,6 +338,11 @@ ggplot(data = all_billboard_summer_hits, aes(x = danceability, y = tempo)) +
   theme_minimal()
 ```
 A song's danceability can be viewed as a function of its tempo; this graph indicates that a tempo of between 150 and 100 is ideal.
+
+```{r}
+all_billboard_summer_hits %>%
+  select(tempo, danceability, track_name)
+```
 
 ## Valence
 
@@ -377,6 +386,11 @@ ggplot(data = all_billboard_summer_hits, aes(x = energy, y = valence)) +
 ```
 
 In any event, I don't think this is all that surprising. It appeared evident that happiness and energy were positively correlated.
+
+```{r}
+all_billboard_summer_hits %>%
+  select(energy, valence, track_name)
+```
 
 # Artist insight
 
