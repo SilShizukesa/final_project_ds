@@ -299,7 +299,9 @@ ggplot(data = all_billboard_summer_hits, aes(x = danceability)) +
   theme_minimal()
 ```
 
-Are there any correlations with Danceability?
+*Next let us take a look at danceability compared with other variables:*
+
+First we will take a look at Energy compared to Danceability:
 
 ```{r}
 ggplot(data = all_billboard_summer_hits, aes(x = danceability, y = energy)) +
@@ -311,10 +313,10 @@ ggplot(data = all_billboard_summer_hits, aes(x = danceability, y = energy)) +
   theme_minimal()
 ```
 
+There is a small correlation between energy and danceability. Though we can see the best range for a song's danceability is from .5 to .75.
 
 
-
-Dance vs Tempo
+Will we see the same thing with tempo?
 
 ```{r}
 ggplot(data = all_billboard_summer_hits, aes(x = danceability, y = tempo)) +
@@ -325,9 +327,7 @@ ggplot(data = all_billboard_summer_hits, aes(x = danceability, y = tempo)) +
        y = "Tempo") +
   theme_minimal()
 ```
-
-
-
+A song's danceability can be viewed as a function of its tempo; this graph indicates that a tempo of between 150 and 100 is ideal.
 
 ## Valence
 
