@@ -272,7 +272,7 @@ First up is loudness compared to liveness
 loud_v_live <- ggplot(data = all_billboard_summer_hits, aes(x = liveness, y = loudness)) +
   geom_point(alpha = 0.7, size = 3, color = "#3498db") +
   geom_smooth(method = "lm", color = "#2c3e50", linetype = "dashed") +
-  labs(title = "Scatter Plot of Liveness and Loudness",
+  labs(title = "Loudness vs Liveness",
        x = "Liveness",
        y = "Loudness") +
   theme_minimal()
@@ -292,7 +292,7 @@ all_billboard_summer_hits %>%
 ggplot(data = all_billboard_summer_hits, aes(x = energy, y = loudness)) +
   geom_point(alpha = 0.7, size = 3, color = "#3498db") +
   geom_smooth(method = "lm",color = "#2c3e50", linetype = "dashed") +
-  labs(title = "Scatter Plot of Energy and Loudness",
+  labs(title = "Loudness vs Energy",
        x = "Energy",
        y = "Loudness") +
   theme_minimal() +
@@ -327,7 +327,7 @@ First we will take a look at Energy compared to Danceability:
 ggplot(data = all_billboard_summer_hits, aes(x = danceability, y = energy)) +
   geom_point(alpha = 0.5, size = 3, color = "#8e44ad") +  # Adjusted point aesthetics
   geom_smooth(method = "lm", color = "#008080", linetype = "dashed") +
-  labs(title = "Scatter Plot of Energy and Danceability",
+  labs(title = "Danceability vs Energy",
        x = "Danceability",
        y = "Energy") +
   theme_minimal()
@@ -346,7 +346,7 @@ Will we see the same thing with tempo?
 ggplot(data = all_billboard_summer_hits, aes(x = danceability, y = tempo)) +
   geom_point(alpha = 0.5, size = 3, color = "#8e44ad") +
   geom_smooth(method = "lm", color = "#008080", linetype = "dashed") +
-  labs(title = "Scatter Plot of Tempo and Danceability",
+  labs(title = "Danceability vs Tempo",
        x = "Danceability",
        y = "Tempo") +
   theme_minimal()
@@ -390,12 +390,12 @@ According to these graphs, happiness has a significant leftward skew, which indi
 Let's now examine an energy and valence scatter plot:
 
 ```{r}
-ggplot(data = all_billboard_summer_hits, aes(x = energy, y = valence)) +
+ggplot(data = all_billboard_summer_hits, aes(x = valence, y = energy )) +
   geom_point(alpha = 0.2, size = 3, color = "#2ecc71") +
   geom_smooth(method = "lm", color = "#e67e22", linetype = "dashed") +
-  labs(title = "Energy and Valence",
-       x = "Energy",
-       y = "Valence") +
+  labs(title = "Valence vs Energy",
+       x = "Valence",
+       y = "Energy") +
   theme_minimal()
 ```
 
@@ -490,7 +490,7 @@ ggplot(data = all_billboard_summer_hits, aes(x = danceability, y = liveness)) +
   
   geom_point(data = rihanna_songs, aes(x = danceability, y = energy), alpha = 1, size = 3, color = "#2ecc71") +
   
-  labs(title = "Scatter Plot of Danceability and liveness",
+  labs(title = "Danceability vs liveness",
        x = "Danceability",
        y = "Liveness") +
   theme_minimal()
