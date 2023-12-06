@@ -599,7 +599,7 @@ These graphs demonstrate that Rihanna is, in fact, exceptional. Her songs are ty
 
 Rihanna's incredible musical ability, which combines dynamic tempo changes and above-average danceability, fits in with other artists in a studio-centric liveliness. Her songs stand out for emphasizing loudness, which produces an arresting and alluring effect. Although there is some uncertainty due to the small 10-sample size, the graphs show that her music regularly falls on the edge of the uncertainty cone. While her music came very close to the mean in 2008 and 2012, there were some notable departures from the mean in 2007. This combination highlights Rihanna's interesting and varied career in music, both stylistically and numerically.
 
-## For Future Consideration
+# For Future Consideration
 
 Does length of song correlate to danceability scores? 
 ```{r}
